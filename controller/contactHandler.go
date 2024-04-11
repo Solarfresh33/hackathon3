@@ -6,7 +6,6 @@ import (
 )
 
 func ContactHandler(w http.ResponseWriter, r *http.Request) {
-
 	tmpl, err := template.ParseFiles("./view/contact.html")
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
@@ -18,4 +17,5 @@ func ContactHandler(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
+	
 }

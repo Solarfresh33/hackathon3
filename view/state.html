@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">    
+</head>
+<body>
+<form action="/update/{{.Idcolis}}" method="POST">
+    <label for="">Point relais :</label>
+    <select name="pointRelais" id="pointRelais">
+        <option value="Oui">Oui</option>
+        <option value="Non">Non</option>
+    </select>
+    <label for="">Probleme :</label>
+    <select name="probleme" id="probleme">
+        <option value="Oui">Oui</option>
+        <option value="Non">Non</option>
+    </select>
+    <label for="">Livré :</label>
+    <select name="livre" id="livre">
+        <option value="Oui">Oui</option>
+        <option value="Non">Non</option>
+    </select>
+    <br>
+    <label for="etat">Choisir l'état du colis :</label>
+    <select name="etat" id="etat">
+        <option value="En préparation">En préparation</option>
+        <option value="Expédié">Expédié</option>
+        <option value="En transit">En transit</option>
+        <option value="En livraison">En livraison</option>
+    </select>
+    <input type="submit" value="Modifier">
+</form>
+</body>
+</html>

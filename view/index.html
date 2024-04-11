@@ -5,12 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">    
 </head>
 <body>
-    <form action="/Package" method="POST">
+    <form action="/create" method="POST">
         Adresse:<input type="text" name="Adresse">
-        Code Postal:<input type="text" name="CodePostal" value="postal">
-
+        Code Postal:<input type="text" name="CodePostal">
+        Ville:<input type="text" name="Ville">
+        Point relais :<select name="pointRelais" id="pointRelais">
+            <option value="Oui">Oui</option>
+            <option value="Non">Non</option>
+        </select>
         <input type="submit" value="crée un colis">
-    </form>
+    </form>  
 
     
 </body>

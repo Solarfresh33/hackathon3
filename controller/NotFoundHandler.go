@@ -5,8 +5,8 @@ import (
 	"net/http"
 )
 
-func NotFoundHandler(w http.ResponseWriter, r *http.Request) {
-
+func NotFoundHandler(w http.ResponseWriter, r *http.Request, status int) {
+	w.WriteHeader(status)
 	tmpl, err := template.ParseFiles("./view/404.html")
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)

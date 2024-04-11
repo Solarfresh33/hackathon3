@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">   
+    <link rel="stylesheet" href="../assets/style.css"> 
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+</head>
+<body>
+   <header>
+        <a href="/">Suivre mon colis</a>
+        <a href="/FAQ">FAQ</a>
+        <a href="#Policies">Politique de litige</a>
+        <a href="/contact">Nous contacter</a>
+   </header>
+   <div class="mainFollow">
+        <h1>Suivre mon colis 📦</h1>
+        <div class="containerFollow">
+            <div class="textFP">
+                <p>Informations pour : <span>{{.Idcolis}}</span></p>
+            </div>
+            <div class="parcelStatus">
+                <p>50%</p>
+                <div class="spotBar">
+                    <div class="spotBarInterior">
+                    </div>
+                </div>
+                <p>Status : <span>{{.State}}</span></p>
+            </div>
+            <div class="containerInfo">
+                <div class="transitStatus">
+                    <div class="status">
+                        <span class="circle"></span>
+                        <p>En préparation</p>
+                    </div>
+                    <span class="dashed"></span>
+                    <div class="status">
+                        <span class="circle"></span>
+                        <p>Expédié</p>
+                    </div>
+                    <span class="dashed"></span>
+                    <div class="status">
+                        <span class="circle"></span>
+                        <p>En transit</p>
+                    </div>
+                    <span class="dashed"></span>
+                    <div class="status">
+                        <span class="circle"></span>
+                        <p>Livré</p>
+                    </div>
+                </div>
+                <div class="infoFP">
+                    <img src="../assets/img/Rectangle 11@2x.png">
+                    <div class="textInfo">
+                        <p>Votre point de livraison : <span>{{.Adresse}} {{.CodePostal}} {{.Ville}}</span></p>
+                        <p>Point relais : <span>{{.PointRelais}}</span></p>
+                        <p>Livré : <span>{{.Livre}}</span></p>
+                        <p>Problème : <span>{{.Probleme}}</span></p>
+                        <div class="problemReport">
+                            <p>Livraison prévue:</p>
+                            <p>{{.EstimateTime}}</p>
+                            <button>SIGNALER UN PROBLEME</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+   </div>       
+</body>
+</html>

@@ -49,7 +49,7 @@ header {
     border-radius: 15px;
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
     backdrop-filter: blur(30px);
-    background-color: hsla(0, 0%, 100%, 0.500);
+    background-color: hsla(0, 0%, 100%, 0.520);
 }
 
 .containerFP p {
@@ -232,4 +232,168 @@ header {
 .textContact a {
     color: #EB9AFF; 
     border-bottom: 1px solid;
+}
+
+.mainFollow {
+    width: 43vw;
+    margin: auto;
+    margin-top: 12vh;
+}
+
+.mainFollow h1 {
+    font-weight: 400;
+    margin-bottom: 10px;
+    margin-left: 13px;
+}
+
+.containerFollow {
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+    border: 1px solid rgba(0, 0, 0, 0.301);
+    padding: 10px;
+    padding-right: 0px;
+    border-radius: 13px;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    backdrop-filter: blur(30px);
+    background-color: hsla(0, 0%, 100%, 0.671);
+}
+
+.textFP {
+    margin: auto;
+}
+
+.textFP p{
+    font-weight: 400;
+    padding: 0;
+    font-size: 1.2em;
+}
+
+.textFP p span {
+    color: #EB9AFF;
+}
+
+.parcelStatus {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.parcelStatus p{
+    font-weight: 600;
+    padding: 0 5px;
+    font-size: 1em;
+}
+
+.parcelStatus p:first-of-type {
+    font-weight: 400;
+    font-size: 0.8em;
+    margin-top: 5px;
+}
+
+.parcelStatus p span {
+    font-weight: 400;
+    color: #EB9AFF;
+}
+
+.spotBar {
+    background-color: #000000;
+    border-radius: 25px;
+    width: 24vw;
+    height: 8px;
+    display: flex;
+    align-items: center;
+    padding: 1px;
+    margin: 5px 0px;
+    margin-top: 0px;
+}
+
+.spotBarInterior {
+    background-color: #EB9AFF;
+    border-radius: 25px;
+    width: 50%;
+    height: 100%;
+    display: block;
+}
+
+.containerInfo {
+    display: flex;
+    margin: 15px;
+    margin-bottom: 10px;
+}
+
+.infoFP {
+    display: flex;
+}
+
+.textInfo {
+    font-weight: 500;
+    font-size: 0.78em;
+    color: #000000;
+}
+
+.textInfo span {
+    font-weight: 300;
+    font-size: 0.95em;
+    color: #EB9AFF;
+}
+
+.infoFP img {
+    width: 210px;
+    margin: 0px 14px;
+}
+
+.transitStatus {
+   padding: 0px 7%;
+}
+
+.status {
+    width: 140px;
+    display: flex;
+    align-items: center;
+}
+
+.status p {
+    font-size: 0.8em;
+}
+
+.circle {
+    margin: 2px 5px;
+    width: 28px;
+    height: 28px;
+    border-radius: 28px;
+    background-color: #EB9AFF;
+}
+
+.dashed {
+    border-left: 1px dashed black;
+    height: 27px;
+    margin-left: 19px;
+}
+
+.problemReport {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.problemReport p:last-of-type {
+    color: #EB9AFF;
+    font-weight: 300;
+}
+
+.problemReport button {
+    color: white;
+    font-size: 0.9em;
+    font-weight: 200;
+    border: none;
+    outline: none;
+    background-color: #EB9AFF;
+    padding: 5px 15px;
+    border-radius: 50px;
+    margin-top: 10px;
+    box-shadow: 0px 3px 3px 0px rgba(0, 0, 0, 0.25);
 }
