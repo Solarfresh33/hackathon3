@@ -1,7 +1,6 @@
 package controllers
 
 import (
-	
 	models "hackaton/model"
 	"html/template"
 	"net/http"
@@ -9,6 +8,12 @@ import (
 )
 
 func CreateHandler(w http.ResponseWriter, r *http.Request) {
+
+	if r.URL.Path != "/create" {
+		models.NotFound(w, r)
+		return
+	}
+
 	var PackageCreate models.UsersPackage
 	var CreateColis models.UsersPackage
 	if r.Method == "POST" {
@@ -22,10 +27,10 @@ func CreateHandler(w http.ResponseWriter, r *http.Request) {
 		}
 
 	}
-    println(PackageCreate.Date)
+	println(PackageCreate.Date)
 	session, _ := r.Cookie("User")
 	if session == nil {
-		http.Redirect(w, r, "/404", http.StatusSeeOther)
+		http.Redirect(w, r, "/", http.StatusSeeOther)
 		return
 	}
 

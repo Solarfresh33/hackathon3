@@ -1,19 +1,28 @@
 package controllers
 
 import (
+	// "crypto/md5"
+	// "encoding/hex"
 	models "hackaton/model"
 	"html/template"
 	"net/http"
+	// "strings"
 )
 
-func ContactHandler(w http.ResponseWriter, r *http.Request) {
+func QRCodeHandler(w http.ResponseWriter, r *http.Request) {
 
-	if r.URL.Path != "/contact" {
+	if r.URL.Path != "/scan" {
 		models.NotFound(w, r)
 		return
 	}
 
-	tmpl, err := template.ParseFiles("./view/contact.html")
+	session, _ := r.Cookie("User")
+	if session == nil {
+		http.Redirect(w, r, "/", http.StatusSeeOther)
+		return
+	}
+
+	tmpl, err := template.ParseFiles("./view/scan.html")
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
@@ -24,5 +33,5 @@ func ContactHandler(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
-	
+
 }

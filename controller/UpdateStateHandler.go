@@ -12,7 +12,7 @@ import (
 func UpdateStateHandler(w http.ResponseWriter, r *http.Request) {
 	session, _ := r.Cookie("User")
 	if session == nil {
-		http.Redirect(w, r, "/404", http.StatusSeeOther)
+		http.Redirect(w, r, "/", http.StatusSeeOther)
 		return
 	}
 	var packageInfo PackageInfo
@@ -26,21 +26,47 @@ func UpdateStateHandler(w http.ResponseWriter, r *http.Request) {
 	println("l'url est : ", GetURLID)
 
 	if GetURLID != "" {
-		if r.Method == "POST" {
-			newState := r.FormValue("etat")
-			newpointRelais := r.FormValue("pointRelais")
-			livre := r.FormValue("livre")
-			probleme := r.FormValue("probleme")
-			println("le nouvel etat est : ", newState)
-			println("le nouveau point relais est : ", newpointRelais)
-			println("le livre est : ", livre)
-			println("le probleme est : ", probleme)
+		h := md5.New()
+		idStr := GetURLID
+		h.Write([]byte(idStr))
+		idStr = hex.EncodeToString(h.Sum(nil))
+		rows, err := models.DB.Query("SELECT idcolis FROM command")
+		if err != nil {
+			panic(err)
+		}
+		var exist bool
+		for rows.Next() {
+			var IdColis string
+			err := rows.Scan(&IdColis)
+			if err != nil {
+				panic(err)
+			}
+			if IdColis == idStr {
+				exist = true
+			}
+		}
+		defer rows.Close()
 
-			_ = models.UpdatePackageState(idStr, newState, newpointRelais, livre, probleme)
-			http.Redirect(w, r, "/id/"+GetURLID, http.StatusSeeOther)
+		if !exist {
+			http.Redirect(w, r, "/scan", http.StatusSeeOther)
 			return
 		}
 	}
+	if r.Method == "POST" {
+		newState := r.FormValue("etat")
+		newpointRelais := r.FormValue("pointRelais")
+		livre := r.FormValue("livre")
+		probleme := r.FormValue("probleme")
+		println("le nouvel etat est : ", newState)
+		println("le nouveau point relais est : ", newpointRelais)
+		println("le livre est : ", livre)
+		println("le probleme est : ", probleme)
+
+		_ = models.UpdatePackageState(idStr, newState, newpointRelais, livre, probleme)
+		http.Redirect(w, r, "/id/"+GetURLID, http.StatusSeeOther)
+		return
+	}
+
 	tmpl, err := template.ParseFiles("./view/state.html")
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)

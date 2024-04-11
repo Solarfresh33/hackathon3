@@ -9,6 +9,17 @@ import (
 )
 
 func GetIDStatusHandler(w http.ResponseWriter, r *http.Request) {
+	
+	session, _ := r.Cookie("User")
+	if session == nil {
+		http.Redirect(w, r, "/", http.StatusSeeOther)
+		return
+	}
+
+	if r.URL.Path != "/up" {
+		models.NotFound(w, r)
+		return
+	}
 
 	getid := r.FormValue("suivie")
 

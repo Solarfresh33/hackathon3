@@ -10,6 +10,11 @@ import (
 
 func GetIDHandler(w http.ResponseWriter, r *http.Request) {
 
+	if r.URL.Path != "/" {
+		models.NotFound(w, r)
+		return
+	}
+
 	getid := r.FormValue("suivie")
 
 	if getid != "" {

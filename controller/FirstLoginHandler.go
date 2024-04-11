@@ -22,15 +22,21 @@ type UserCookie struct {
 }
 
 func FirstLoginHandler(w http.ResponseWriter, r *http.Request) {
-    var id int
 
-    adminMutex.Lock()
-    defer adminMutex.Unlock()
+	if r.URL.Path != "/login" {
+		models.NotFound(w, r)
+		return
+	}
 
-    if !adminCreated {
-        models.FirstUserAdmin()
-        adminCreated = true
-    }
+	var id int
+
+	adminMutex.Lock()
+	defer adminMutex.Unlock()
+
+	if !adminCreated {
+		models.FirstUserAdmin()
+		adminCreated = true
+	}
 	rows, err := models.DB.Query("SELECT adminusr, adminpswd FROM Users")
 	if err != nil {
 		panic(err)

@@ -51,10 +51,11 @@ func CreatePackage(adresse string, IdColis string, codepostal int, Date string, 
 	}
 	println(DateEstimate)
 	currentTime := time.Now().In(parisLocation)
-	futureTime := currentTime.Add(4 * 24 * time.Hour)
+	rand.Seed(time.Now().UnixNano())
+	randomNumber := time.Duration(rand.Intn(9) + 4)
+	futureTime := currentTime.Add(randomNumber * 24 * time.Hour)
 	formattedFutureTime := futureTime.Format("Monday 02 January")
 	println(formattedFutureTime)
-	println("quoicoucrampté")
 	_, err = DB.Exec("INSERT INTO command (adresse, codepostal, IdColis, Date, State, Estimatetime, ville, PointRelais, Probleme, Livre) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", adresse, codepostal, idStr, currentTime.Format("Monday 02 January"), "En préparation", formattedFutureTime, ville, pointrelais, "Non", "Non")
 	if err != nil {
 		panic(err)
@@ -63,8 +64,8 @@ func CreatePackage(adresse string, IdColis string, codepostal int, Date string, 
 	createpackage.CodePostal = codepostal
 	createpackage.Ville = ville
 	createpackage.PointRelais = pointrelais
-
 	dates, err := GetDate(uid)
+	
 	if err != nil {
 		return createpackage, err
 	}
@@ -84,7 +85,7 @@ type Date struct {
 func GetDate(uid string) ([]Date, error) {
 	var dates []Date
 
-	rows, err := DB.Query("SELECT date FROM command", uid)
+	rows, err := DB.Query("SELECT date FROM command WHERE idcolis=?", uid)
 
 	if err != nil {
 		panic(err)

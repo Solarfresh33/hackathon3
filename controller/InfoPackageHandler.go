@@ -20,19 +20,19 @@ type PackageInfo struct {
 	PointRelais  string
 	Probleme     string
 	Livre        string
-
 }
 
 func InfoPackageHandler(w http.ResponseWriter, r *http.Request) {
 	var packageInfo PackageInfo
 	GetURLID := strings.Split(r.URL.Path, "/")[2]
+
 	packageInfo.Idcolis = GetURLID
 	h := md5.New()
 	idStr := GetURLID
 	h.Write([]byte(idStr))
 	idStr = hex.EncodeToString(h.Sum(nil))
 	println("l'url est : ", GetURLID)
-	
+
 	if GetURLID != "" {
 		rows, err := models.DB.Query("SELECT codepostal, adresse, date, state, estimatetime, ville, pointrelais, probleme, livre FROM command where idcolis = ?", idStr)
 		if err != nil {
@@ -45,15 +45,6 @@ func InfoPackageHandler(w http.ResponseWriter, r *http.Request) {
 				panic(err)
 			}
 		}
-		println("le code postal est : ", packageInfo.CodePostal)
-		println("l'adresse est : ", packageInfo.Adresse)
-		println("la date est : ", packageInfo.Date)
-		println("l'etat est : ", packageInfo.State)
-		println("le temps estimé est : ", packageInfo.EstimateTime)
-		println("la ville est : ", packageInfo.Ville)
-		println("le point relais est : ", packageInfo.PointRelais)
-		println("le probleme est : ", packageInfo.Probleme)
-		println("le livre est : ", packageInfo.Livre)
 	}
 	tmpl, err := template.ParseFiles("./view/followPackage.html")
 	if err != nil {

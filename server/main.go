@@ -24,7 +24,11 @@ func main() {
 	http.HandleFunc("/update/", controllers.UpdateStateHandler)
 	http.HandleFunc("/login", controllers.FirstLoginHandler)
 	http.HandleFunc("/CreateUser", controllers.CreateUserAdminHandler)
+	http.HandleFunc("/ListPackage", controllers.ListColisHandler)
 	http.HandleFunc("/up", controllers.GetIDStatusHandler)
+	http.HandleFunc("/scan", controllers.QRCodeHandler)
+
+	http.HandleFunc("/deliveryTrack", controllers.DeliveryTrackHandler)
 	err := http.ListenAndServe("localhost:8080", nil)
 	if err != nil {
 		fmt.Println("Erreur lors du démarrage du serveur:", err)

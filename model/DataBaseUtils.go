@@ -35,7 +35,7 @@ func CreateDBCommand() {
 		Adresse VARCHAR(100),
 		State TEXT,
 		Date TEXT,
-		EstimateTime TIMESTAMP,
+		EstimateTime TEXT,
 		ville TEXT,
 		Livre TEXT,
 		Probleme TEXT,

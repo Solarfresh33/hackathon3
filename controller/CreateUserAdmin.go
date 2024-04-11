@@ -13,9 +13,15 @@ import (
 var adminCreate bool
 
 func CreateUserAdminHandler(w http.ResponseWriter, r *http.Request) {
+
+	if r.URL.Path != "/CreateUser" {
+		models.NotFound(w, r)
+		return
+	}
+
 	session, _ := r.Cookie("User")
 	if session == nil {
-		http.Redirect(w, r, "/404", http.StatusSeeOther)
+		http.Redirect(w, r, "/", http.StatusSeeOther)
 		return
 	}
 

@@ -7,11 +7,15 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
 </head>
 <body>
-   <header>
-        <a href="/">Suivre mon colis</a>
-        <a href="/FAQ">FAQ</a>
-        <a href="#Policies">Politique de litige</a>
-        <a href="/contact">Nous contacter</a>
+    <header>
+        <label for="toggle">☰</label>
+        <input type="checkbox" id="toggle">
+        <div class="main_pages">
+            <a href="/">Suivre mon colis</a>
+            <a href="/FAQ">FAQ</a>
+            <a href="#Policies">Politique de litige</a>
+            <a href="/contact">Nous contacter</a>
+        </div>
    </header>
    <div class="mainFollow">
         <h1>Suivre mon colis 📦</h1>
@@ -20,12 +24,12 @@
                 <p>Informations pour : <span>{{.Idcolis}}</span></p>
             </div>
             <div class="parcelStatus">
-                <p>50%</p>
+                <p id="statePercent">50%</p>
                 <div class="spotBar">
-                    <div class="spotBarInterior">
+                    <div class="spotBarInterior" style="width: 50% !important;">
                     </div>
                 </div>
-                <p>Status : <span>{{.State}}</span></p>
+                <p>Status : <span id="stateActual">{{.State}}</span></p>
             </div>
             <div class="containerInfo">
                 <div class="transitStatus">
@@ -65,6 +69,44 @@
                 </div>
             </div>
         </div>
-   </div>       
+   </div>
+   <script>
+    document.addEventListener('DOMContentLoaded', function () {
+        function updateProgressAndCircleClasses() {
+            const statesWithPercentages = {
+                'En préparation': 25,
+                'Expédié': 50,
+                'En transit': 75,
+                'Livré': 100
+            };
+    
+            const currentStateText = document.getElementById('stateActual').textContent.trim();
+    
+            const currentPercentage = statesWithPercentages[currentStateText] || 0;
+            
+            document.getElementById('statePercent').textContent = currentPercentage + '%';
+            document.querySelector('.spotBarInterior').style.width = currentPercentage + '%';
+    
+            const statusElements = document.querySelectorAll('.transitStatus .status');
+            const currentStateIndex = Object.keys(statesWithPercentages).indexOf(currentStateText);
+            statusElements.forEach((elem, index) => {
+                const circle = elem.querySelector('.circle');
+                if (index < currentStateIndex) {
+                    circle.classList.add('circle');
+                    circle.classList.remove('circleActual', 'circleGrey');
+                } else if (index === currentStateIndex) {
+                    circle.classList.add('circleActual');
+                    circle.classList.remove('circle', 'circleGrey');
+                } else {
+                    circle.classList.add('circleGrey');
+                    circle.classList.remove('circle', 'circleActual');
+                }
+            });
+        }
+
+        updateProgressAndCircleClasses();
+    });
+    </script>
+    
 </body>
 </html>

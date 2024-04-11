@@ -22,9 +22,53 @@ header {
     border-bottom-right-radius: 15px;
     margin: auto;
     display: flex;
-    justify-content: space-around;
     align-items: center;
     font-size: 1.2em;
+}
+
+.main_pages {
+    margin: auto 5px;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    z-index: 1000;
+}
+
+label, #toggle
+{
+    display: none;
+}
+ 
+@media (max-width: 920px)
+{
+    header
+    {
+        background: transparent;
+        margin: 0%;
+    }
+ 
+    .main_pages 
+    {
+        display: none;
+        flex-direction: column;
+        background: white;
+        height: 25vh;
+        width: 200px;
+    }
+    label 
+    {
+        width: 30px;
+        display: flex;
+        align-items: center;
+        font-size: 40px;
+        color: #000000;
+        cursor: pointer;
+    }
+ 
+    #toggle:checked + .main_pages {
+        display: flex;
+    }
 }
 
 .mainFP {
@@ -43,9 +87,9 @@ header {
     display: flex;
     justify-content: space-around;
     flex-direction: column;
-    height: 110px;
     border: 1px solid rgba(0, 0, 0, 0.301);
     padding: 10px;
+    height: 110px;
     border-radius: 15px;
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
     backdrop-filter: blur(30px);
@@ -366,6 +410,24 @@ header {
     background-color: #EB9AFF;
 }
 
+.circleGrey {
+    margin: 2px 5px;
+    width: 28px;
+    height: 28px;
+    border-radius: 28px;
+    background-color: #727272;
+}
+
+.circleActual {
+    margin: 2px 5px;
+    width: 28px;
+    height: 28px;
+    border-radius: 28px;
+    background-image: url("https://upload.cyen.fr/share/1712823563275021.gif");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
 .dashed {
     border-left: 1px dashed black;
     height: 27px;
@@ -396,4 +458,114 @@ header {
     border-radius: 50px;
     margin-top: 10px;
     box-shadow: 0px 3px 3px 0px rgba(0, 0, 0, 0.25);
+}
+
+.qr {
+    width: 80%;
+    height: 80%;
+    margin: 0 auto;
+    
+}
+video {
+    margin: 0 auto;
+    border: none;
+    outline: none;
+}
+.tracky {
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 50px;
+    margin-bottom: -50px;
+    font-size: 75px;
+    font-weight: 500;
+    color: #EB9AFF;
+}
+
+.mainDelivery {
+    width: fit-content;
+    margin: auto;
+    margin-top: 11vh;
+}
+
+.mainDelivery h1 {
+    font-weight: 400;
+    margin-bottom: 10px;
+    margin-left: 13px;
+}
+
+.containerDeliveryTrack {
+    width: 51vw;
+    min-width: 366px;
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+    border: 1px solid rgba(0, 0, 0, 0.301);
+    padding: 15px 25px;
+    border-radius: 15px;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    backdrop-filter: blur(30px);
+    background-color: hsla(0, 0%, 100%, 0.650);
+}
+
+.headerBar {
+    border-radius: 10px;
+    background-color: #000000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+    padding: 5px 0px;
+}
+.headerBar p {
+    color: white;
+    font-weight: 600;
+    font-size: 1.2em;
+    width: 33%;
+    text-align: center;
+}
+
+.headerBar p:last-of-type{
+    width: 20%;
+}
+
+.containerDelivery {
+    margin-top: 5px;
+    height: 51vh;
+    overflow: scroll;
+}
+
+.containerDelivery::-webkit-scrollbar {
+    display: none;
+  }
+
+.delivery {
+    display: flex;
+    background-color: #D9D9D9;
+    flex-direction: row;
+    justify-content: space-between;
+    border-radius: 10px;
+    margin: 12px 0px;
+}
+
+.delivery p:first-of-type {
+    font-weight: 500;
+    padding-left: 10px;
+}
+
+.delivery p {
+    padding: 5px 0px;
+    font-size: 1.1em;
+    width: 33%;
+    text-align: center;
+}
+
+.containerQR {
+    background-color: #EB9AFF;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 20%;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
 }
