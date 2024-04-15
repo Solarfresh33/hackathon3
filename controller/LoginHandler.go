@@ -21,7 +21,7 @@ type UserCookie struct {
 	Pseudo string `json:"pseudo"`
 }
 
-func FirstLoginHandler(w http.ResponseWriter, r *http.Request) {
+func LoginHandler(w http.ResponseWriter, r *http.Request) {
 	var Connected PackageInfo
 	cookie, _ := r.Cookie("User")
 	if cookie == nil {

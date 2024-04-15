@@ -22,7 +22,7 @@ func main() {
 	http.HandleFunc("/contact", controllers.ContactHandler)
 	http.HandleFunc("/FAQ", controllers.FAQHandler)
 	http.HandleFunc("/update/", controllers.UpdateStateHandler)
-	http.HandleFunc("/login", controllers.FirstLoginHandler)
+	http.HandleFunc("/login", controllers.LoginHandler)
 	http.HandleFunc("/admin", controllers.MenuboardAdminHandler)
 	http.HandleFunc("/CreateUser", controllers.CreateUserAdminHandler)
 	http.HandleFunc("/deliveryTrack", controllers.DeliveryTrackHandler)
