@@ -3,33 +3,57 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">    
+    <link rel="stylesheet" href="../assets/style.css"> 
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
 </head>
 <body>
-<form action="/update/{{.Idcolis}}" method="POST">
-    <label for="">Point relais :</label>
-    <select name="pointRelais" id="pointRelais">
-        <option value="Oui">Oui</option>
-        <option value="Non">Non</option>
-    </select>
-    <label for="">Probleme :</label>
-    <select name="probleme" id="probleme">
-        <option value="Oui">Oui</option>
-        <option value="Non">Non</option>
-    </select>
-    <label for="">Livré :</label>
-    <select name="livre" id="livre">
-        <option value="Oui">Oui</option>
-        <option value="Non">Non</option>
-    </select>
-    <br>
-    <label for="etat">Choisir l'état du colis :</label>
-    <select name="etat" id="etat">
-        <option value="En préparation">En préparation</option>
-        <option value="Expédié">Expédié</option>
-        <option value="En transit">En transit</option>
-        <option value="En livraison">En livraison</option>
-    </select>
-    <input type="submit" value="Modifier">
-</form>
+    <header>
+        <label for="toggle">☰</label>
+        <input type="checkbox" id="toggle">
+        <div class="main_pages">
+            <a href="/">Suivre mon colis</a>
+            <a href="/FAQ">FAQ</a>
+            <a href="/litige">Politique de litige</a>
+            <a href="/contact">Nous contacter</a>
+            {{if .Connected}}
+            <a href="/admin">Espace admin</a>
+            <a href="/deco">Déconnexion</a>
+            {{else}}
+            {{end}}
+        </div>
+   </header> 
+
+    <div class="mainCreate">
+        <h1>Mise à jour du colis</h1>
+        <form class="containerUpdatePackage" action="/update/{{.Idcolis}}" method="POST">
+            <div class="boxUpdatePackage"><p>Choisir l'état du colis :</p>
+                <select name="etat" id="etat">
+                <option value="En préparation">En préparation</option>
+                <option value="Expédié">Expédié</option>
+                <option value="En transit">En transit</option>
+                <option value="En livraison">En livraison</option>
+                </select>
+            </div>
+            <div class="boxUpdatePackage">
+                <p>Livré :</p>
+                <select name="livre" id="livre">
+                <option value="Oui">Oui</option>
+                <option value="Non">Non</option>
+                </select>
+            </div>
+            <div class="boxUpdatePackage">
+                <p>Problème :</p>
+                <select name="probleme" id="probleme">
+                    <option value="Oui">Oui</option>
+                    <option value="Non">Non</option>
+                </select>
+                <div class="boxInfoCheckbox">
+                    <p>Point relais :</p>
+                    <input type="checkbox" id="pointRelais" name="pointRelais"/>
+                </div>
+            </div>
+            <input class="validForm" type="submit" value="Modifier">
+        </form>  
+    </div>
 </body>
 </html>

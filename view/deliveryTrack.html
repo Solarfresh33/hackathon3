@@ -13,102 +13,36 @@
         <div class="main_pages">
             <a href="/">Suivre mon colis</a>
             <a href="/FAQ">FAQ</a>
-            <a href="#Policies">Politique de litige</a>
+            <a href="/litige">Politique de litige</a>
             <a href="/contact">Nous contacter</a>
+            <a href="/admin">Espace admin</a>
+            <a href="/deco">Déconnexion</a>
         </div>
    </header>
+
    <div class="mainDelivery">
         <h1>🚢 Livraison en cours</h1>
-        <form class="containerDeliveryTrack" method="POST">
+        <div class="containerDeliveryTrack">
             <div class="headerBar">
                 <p>Nom</p>
                 <p>Etat</p>
                 <p>QR CODE</p>
             </div>
+
             <div class="containerDelivery">
+                {{range .}}
                 <div class="delivery">
-                    <p>Julien Chamouleau</p>
-                    <p>En préparation</p>
+                    <p>{{.Name}}</p>
+                    <p>{{.State}}</p>
                     <div class="containerQR">
-                        <span class="material-symbols-outlined">
+                        <a class="material-symbols-outlined">
                             download
-                        </span>
+                        </a>
                     </div>
                 </div>
-                <div class="delivery">
-                    <p>Julien Chamouleau</p>
-                    <p>En préparation</p>
-                    <div class="containerQR">
-                        <span class="material-symbols-outlined">
-                            download
-                        </span>
-                    </div>
-                </div>
-                <div class="delivery">
-                    <p>Nom</p>
-                    <p>Etat</p>
-                    <div class="containerQR">
-                        <span class="material-symbols-outlined">
-                            download
-                        </span>
-                    </div>
-                </div>
-                <div class="delivery">
-                    <p>Julien</p>
-                    <p>Livré</p>
-                    <div class="containerQR">
-                        <span class="material-symbols-outlined">
-                            download
-                        </span>
-                    </div>
-                </div>
-                <div class="delivery">
-                    <p>Julien Chamouleau</p>
-                    <p>En préparation</p>
-                    <div class="containerQR">
-                        <span class="material-symbols-outlined">
-                            download
-                        </span>
-                    </div>
-                </div>
-                <div class="delivery">
-                    <p>Julien Chamouleau</p>
-                    <p>En préparation</p>
-                    <div class="containerQR">
-                        <span class="material-symbols-outlined">
-                            download
-                        </span>
-                    </div>
-                </div>
-                <div class="delivery">
-                    <p>Julien Chamouleau</p>
-                    <p>En préparation</p>
-                    <div class="containerQR">
-                        <span class="material-symbols-outlined">
-                            download
-                        </span>
-                    </div>
-                </div>
-                <div class="delivery">
-                    <p>Julien Chamouleau</p>
-                    <p>En préparation</p>
-                    <div class="containerQR">
-                        <span class="material-symbols-outlined">
-                            download
-                        </span>
-                    </div>
-                </div>
-                <div class="delivery">
-                    <p>Julien Chamouleau</p>
-                    <p>En préparation</p>
-                    <div class="containerQR">
-                        <span class="material-symbols-outlined">
-                            download
-                        </span>
-                    </div>
-                </div>
-            </div>
-        </form>
-   </div>       
+                {{end}} 
+            </div> 
+        </div>
+    </div>  
 </body>
 </html>

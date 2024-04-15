@@ -569,3 +569,251 @@ video {
     border-top-right-radius: 10px;
     border-bottom-right-radius: 10px;
 }
+
+.containerQR a:hover {
+    color: white;
+    border: none;
+}
+
+.containerBox {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.box {
+    width: 33%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    background-color: #EB9AFF;
+    border-radius: 10px;
+    margin: 25px;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    border: 1px solid rgba(0, 0, 0, 0.299);
+    padding: 5px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.301) !important;
+    cursor: pointer;
+}
+
+.box span {
+    font-size: 100px;
+    color: white;
+}
+
+.box p {
+    font-size: 1.8em;
+    font-weight: 600;
+    color: white;
+}
+
+.mainCreate {
+    width: fit-content;
+    margin: auto;
+    margin-top: 12vh;
+}
+
+.mainCreate h1 {
+    font-weight: 400;
+    margin-bottom: 10px;
+    margin-left: 13px;
+}
+
+.containerFormPackage {
+    width: 28vw;
+    height: 40vh;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    border: 1px solid rgba(0, 0, 0, 0.301);
+    padding: 25px;
+    border-radius: 13px;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    backdrop-filter: blur(30px);
+    background-color: hsla(0, 0%, 100%, 0.671);
+    font-size: 1.2em;
+}
+
+.boxInfoPackage {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.boxInfoPackage p {
+    margin-right: 1em;
+    white-space: nowrap;
+}
+
+.boxInfoPackage input {
+    border-radius: 8px;
+    border: 1px solid rgba(0, 0, 0, 0.292);
+    outline: none;
+    flex-grow: 1;
+    height: 35px;
+    width: 100%;
+    box-sizing: border-box;
+    font-size: 0.9em;
+}
+
+.boxInfoPostal {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.boxInfoCity {
+    width: 80%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding-left: 15px;
+}
+
+.boxInfoCheckbox {
+    margin-left: 20px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.boxInfoCheckbox input[type="checkbox"] {
+    width: 23px;
+    flex-grow: 0;
+}
+
+.validForm {
+    border: none;
+    background-color: #EB9AFF;
+    outline: none;
+    color: white;
+    font-weight: 500;
+    font-size: 1em;
+    padding: 5px;
+    text-align: center;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.15);
+    border-radius: 8px;
+}
+
+.containerUpdatePackage {
+    width: fit-content;
+    height: 40vh;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    border: 1px solid rgba(0, 0, 0, 0.301);
+    padding: 25px;
+    border-radius: 13px;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    backdrop-filter: blur(30px);
+    background-color: hsla(0, 0%, 100%, 0.671);
+    font-size: 1.2em;
+}
+
+.boxUpdatePackage {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.boxUpdatePackage p {
+    margin-right: 1em;
+    white-space: nowrap;
+}
+
+.boxUpdatePackage input {
+    border-radius: 8px;
+    border: 1px solid rgba(0, 0, 0, 0.292);
+    outline: none;
+    flex-grow: 1;
+    height: 35px;
+    width: 100%;
+    box-sizing: border-box;
+    font-size: 0.9em;
+}
+
+.mainlogin {
+    width: fit-content;
+    margin: auto;
+    margin-top: 12vh;
+}
+
+.containerlogin {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    border: 1px solid rgba(0, 0, 0, 0.301);
+    padding: 50px 95px;
+    border-radius: 13px;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    backdrop-filter: blur(30px);
+    background-color: hsla(0, 0%, 100%, 0.671);
+}
+
+.boxlogin h1 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    font-size: 2.6em;
+    color: white;
+    margin: 5px;
+}
+
+.boxlogin {
+    background-color: #EB9AFF;
+    border-radius: 8px;
+    width: 21vw;
+    margin: auto;
+    margin-bottom: 50px;
+}
+
+.loginInput  {
+    height: 45px;
+    width: 100%;
+    font-size: 1.1em;
+    border-radius: 10px;
+    outline: none;
+    border: 1px solid #EB9AFF;
+    box-shadow: 0px 2px 2px 0px #EB9AFF;
+    padding-left: 10px;
+    margin-bottom: 20px;
+    box-sizing: border-box;
+}
+
+.loginSubmit {
+    background-color: #EB9AFF;
+    border: none;
+    outline: none;
+    color: white;
+    font-size: 1.2em;
+    font-weight: 500;
+    margin: auto;
+    cursor: pointer;
+    border-radius: 8px;
+    padding: 10px 45px;
+    margin-top: 20px;
+}
+
+.boxRegister h1 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    font-size: 1.7em;
+    color: white;
+}
+
+.boxRegister {
+    background-color: #EB9AFF;
+    border-radius: 8px;
+    width: 21vw;
+    margin: auto;
+    margin-bottom: 50px;
+    padding: 15px 10px;
+}

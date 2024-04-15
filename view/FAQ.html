@@ -13,8 +13,13 @@
         <div class="main_pages">
             <a href="/">Suivre mon colis</a>
             <a href="/FAQ">FAQ</a>
-            <a href="#Policies">Politique de litige</a>
+            <a href="/litige">Politique de litige</a>
             <a href="/contact">Nous contacter</a>
+            {{if .Connected}}
+            <a href="/admin">Espace admin</a>
+            <a href="/deco">Déconnexion</a>
+            {{else}}
+            {{end}}
         </div>
    </header>
 
@@ -33,7 +38,10 @@
                 </span>
             </button>
             <div class="panel">
-            <p>Lorem ipsum...</p>
+            <p> Nous assurons un suivi précis des colis et des livraisons en temps réel, avec des mises à jour régulières sur l'état de votre commande. 
+                Notre équipe est dédiée à vous fournir un service de qualité, avec une assistance disponible 24/7 pour répondre à toutes vos questions concernant vos suivis et livraisons. 
+                En cas de problème ou de retard, nous nous engageons à trouver rapidement une solution et à vous tenir informé. 
+                Votre satisfaction est notre priorité, et nous travaillons constamment pour améliorer nos processus afin de vous offrir la meilleure expérience possible.</p>
             </div>
 
             <span class="line"></span>
@@ -43,8 +51,11 @@
                     expand_more
                 </span>
             </button>
-            <div class="panel">
-            <p>Lorem ipsum...</p>
+            <div class="panel"> 
+            <p>
+            Notre politique de services et de facturation repose sur la transparence et l'engagement envers nos clients. 
+            Nous visons à offrir une expérience client optimale avec des tarifs transparents, sans frais cachés, et des options de paiement flexibles. 
+            Votre confidentialité est garantie, et nous nous engageons à améliorer constamment nos services en fonction de vos retours pour assurer votre satisfaction.</p>
             </div>
             
             <span class="line"></span>
@@ -55,7 +66,10 @@
                 </span>
             </button>
             <div class="panel">
-            <p>Lorem ipsum...</p>
+            <p>Pour toute réclamation (retard, dommages), contactez-nous avec numéro de suivi et détails.
+            Nous enquêterons rapidement pour une solution satisfaisante.
+            Votre satisfaction est primordiale.
+            Contactez-nous à [adresse e-mail ou numéro de téléphone].</p>
             </div>
         </div>
    </div>

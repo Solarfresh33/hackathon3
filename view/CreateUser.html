@@ -3,14 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">    
+    <link rel="stylesheet" href="../assets/style.css"> 
 </head>
 
 <body>
-    <p>test</p>
-    <form action="/CreateUser" method="POST">
-        <input type="text" name="adminusr">
-        <input type="password" name="adminpswd">
-        <input type="submit" value="Submit">
-    </form>
+    <header>
+        <label for="toggle">☰</label>
+        <input type="checkbox" id="toggle">
+        <div class="main_pages">
+            <a href="/">Suivre mon colis</a>
+            <a href="/FAQ">FAQ</a>
+            <a href="/litige">Politique de litige</a>
+            <a href="/contact">Nous contacter</a>
+            <a href="/admin">Espace admin</a>
+            <a href="/deco">Déconnexion</a>
+        </div>
+   </header>
+    <div class="mainlogin">
+        <form class="containerlogin" action="/CreateUser" method="POST">
+            <div class="boxRegister">
+                <h1>Création d'un compte</h1>
+            </div>
+            <input class="loginInput" type="text" name="adminusr" placeholder="Nom">
+            <input class="loginInput" type="password" name="adminpswd" placeholder="Mot de passe">
+            <input class="loginSubmit" type="submit" value="Créer">
+        </form>
+    </div>
 </body>
 </html>

@@ -3,19 +3,44 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">    
+    <link rel="stylesheet" href="../assets/style.css"> 
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
 </head>
 <body>
-    <form action="/create" method="POST">
-        Adresse:<input type="text" name="Adresse">
-        Code Postal:<input type="text" name="CodePostal">
-        Ville:<input type="text" name="Ville">
-        Point relais :<select name="pointRelais" id="pointRelais">
-            <option value="Oui">Oui</option>
-            <option value="Non">Non</option>
-        </select>
-        <input type="submit" value="crée un colis">
-    </form>  
+    <header>
+        <label for="toggle">☰</label>
+        <input type="checkbox" id="toggle">
+        <div class="main_pages">
+            <a href="/">Suivre mon colis</a>
+            <a href="/FAQ">FAQ</a>
+            <a href="/litige">Politique de litige</a>
+            <a href="/contact">Nous contacter</a>
+            {{if .Connected}}
+            <a href="/admin">Espace admin</a>
+            <a href="/deco">Déconnexion</a>
+            {{else}}
+            {{end}}
+        </div>
+   </header> 
 
-    
+    <div class="mainCreate">
+        <h1>Création d'un colis</h1>
+        <form class="containerFormPackage" action="/create" method="POST">
+            <div class="boxInfoPackage"><p>Adresse :</p><input type="text" name="Adresse"></div>
+            <div class="boxInfoPackage">
+                <div class="boxInfoPostal"><p>Code Postal :</p><input type="text" name="CodePostal"></div>
+                <div class="boxInfoCity"><p>Ville :</p><input type="text" name="Ville"></div>
+            </div>
+            <div class="boxInfoPackage"><p>Email :</p><input type="text" name="Email"></div>
+            <div class="boxInfoPackage">
+                <div class="boxInfoPostal"><p>Nom :</p><input type="text" name="Name"></div>
+                <div class="boxInfoCheckbox">
+                    <p>Point relais :</p>
+                    <input type="checkbox" id="pointRelais" name="pointRelais"/>
+                </div>
+            </div>
+            <input class="validForm" type="submit" value="créer un colis">
+        </form>  
+    </div>
 </body>
 </html>

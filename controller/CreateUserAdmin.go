@@ -1,8 +1,6 @@
 package controllers
 
 import (
-	"encoding/base64"
-	"encoding/json"
 	models "hackaton/model"
 	"html/template"
 	"net/http"
@@ -13,7 +11,16 @@ import (
 var adminCreate bool
 
 func CreateUserAdminHandler(w http.ResponseWriter, r *http.Request) {
-
+	var CreateAdmin models.Users
+	cookie, _ := r.Cookie("User")
+	if cookie == nil {
+		CreateAdmin.Connected = false
+		println("Connected = false")
+	} else {
+		CreateAdmin.Connected = true
+		println("Connected = true")
+	
+	}
 	if r.URL.Path != "/CreateUser" {
 		models.NotFound(w, r)
 		return
@@ -26,34 +33,15 @@ func CreateUserAdminHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	var UserAdmin models.Users
-	var CreateAdmin models.Users
 	if r.Method == "POST" {
 		UserAdmin.Adminusr = r.FormValue("adminusr")
 		UserAdmin.Adminpswd = r.PostFormValue("adminpswd")
 		if UserAdmin.Adminusr != "" && UserAdmin.Adminpswd != "" {
 			CreateAdmin, _ = models.CreateUserAdmin(UserAdmin.Adminusr, UserAdmin.Adminpswd, UserAdmin.Uid, UserAdmin.Admin)
-			println("user crée")
 			adminCreate = true
-			userData := &UserCookie{
-				Id:     UserAdmin.Id,
-				Pseudo: UserAdmin.Adminusr,
-			}
-
-			userBytes, err := json.Marshal(userData)
-			if err != nil {
-				panic(err)
-			}
-			http.SetCookie(w, &http.Cookie{
-				Name:     "User",
-				Value:    base64.URLEncoding.EncodeToString(userBytes),
-				HttpOnly: true,
-				MaxAge:   604800,
-			})
-			http.Redirect(w, r, "/", http.StatusSeeOther)
 		}
 	}
 	if adminCreate {
-		println(UserAdmin.Adminusr)
 		_, err := models.DB.Exec("DELETE FROM Users WHERE adminusr = ?", "admin")
 		if err != nil {
 			panic(err)

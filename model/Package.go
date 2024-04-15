@@ -1,8 +1,6 @@
 package models
 
 import (
-	"crypto/md5"
-	"encoding/hex"
 	"math/rand"
 	"time"
 )
@@ -17,9 +15,12 @@ type UsersPackage struct {
 	EstimateTime string
 	Ville        string
 	PointRelais  string
+	Email        string
+	Name         string
+	Connected 	bool
 }
 
-func CreatePackage(adresse string, IdColis string, codepostal int, Date string, State string, Estimatetime string, ville string, pointrelais string) (UsersPackage, error) {
+func CreatePackage(adresse string, IdColis string, Email string, Name string, codepostal int, Date string, State string, Estimatetime string, ville string, pointrelais string) (UsersPackage, error) {
 	var createpackage UsersPackage
 	const charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
 	var seededRand *rand.Rand = rand.New(
@@ -29,10 +30,6 @@ func CreatePackage(adresse string, IdColis string, codepostal int, Date string, 
 		uid += string(charset[seededRand.Intn(len(charset))])
 	}
 	println(uid)
-	h := md5.New()
-	idStr := uid
-	h.Write([]byte(idStr))
-	idStr = hex.EncodeToString(h.Sum(nil))
 	parisLocation, err := time.LoadLocation("Europe/Paris")
 	if err != nil {
 		panic(err)
@@ -49,14 +46,12 @@ func CreatePackage(adresse string, IdColis string, codepostal int, Date string, 
 			panic(err)
 		}
 	}
-	println(DateEstimate)
 	currentTime := time.Now().In(parisLocation)
 	rand.Seed(time.Now().UnixNano())
 	randomNumber := time.Duration(rand.Intn(9) + 4)
 	futureTime := currentTime.Add(randomNumber * 24 * time.Hour)
 	formattedFutureTime := futureTime.Format("Monday 02 January")
-	println(formattedFutureTime)
-	_, err = DB.Exec("INSERT INTO command (adresse, codepostal, IdColis, Date, State, Estimatetime, ville, PointRelais, Probleme, Livre) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", adresse, codepostal, idStr, currentTime.Format("Monday 02 January"), "En préparation", formattedFutureTime, ville, pointrelais, "Non", "Non")
+	_, err = DB.Exec("INSERT INTO command (adresse, codepostal, IdColis, Date, State, Estimatetime, ville, PointRelais, Probleme, Livre, Email, Name) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)", adresse, codepostal, uid, currentTime.Format("Monday 02 January"), "En préparation", formattedFutureTime, ville, pointrelais, "Non", "Non", Email, Name)
 	if err != nil {
 		panic(err)
 	}
@@ -64,8 +59,10 @@ func CreatePackage(adresse string, IdColis string, codepostal int, Date string, 
 	createpackage.CodePostal = codepostal
 	createpackage.Ville = ville
 	createpackage.PointRelais = pointrelais
+	createpackage.Email = Email
+	createpackage.Name = Name
 	dates, err := GetDate(uid)
-	
+
 	if err != nil {
 		return createpackage, err
 	}
@@ -116,6 +113,7 @@ type Users struct {
 	Adminusr  string
 	Adminpswd string
 	Admin     int
+	Connected bool
 }
 
 func CreateUserAdmin(username string, password string, UID string, admin int) (Users, error) {
@@ -134,7 +132,6 @@ func CreateUserAdmin(username string, password string, UID string, admin int) (U
 	UserAdmin.Adminusr = username
 	UserAdmin.Adminpswd = password
 	UserAdmin.Uid = uid
-	println("user crée avec come uid ", UserAdmin.Uid)
 	return UserAdmin, nil
 }
 
@@ -146,8 +143,42 @@ func FirstUserAdmin() {
 	for i := 0; i < 16; i++ {
 		UserAdmin.Uid += string(charset[seededRand.Intn(len(charset))])
 	}
-	_, err := DB.Exec("INSERT INTO Users (adminusr, adminpswd, Admin, uid) VALUES (?, ?, 1, ?)", "admin", "admin", UserAdmin.Uid)
+	_, err := DB.Exec("INSERT INTO Users (adminusr, adminpswd, uid) VALUES (?, ?, ?)", "admin", "admin", UserAdmin.Uid)
 	if err != nil {
 		panic(err)
 	}
+}
+
+
+func GetEmailandNAme(idcolis string) UsersPackage{
+	rows, err := DB.Query("SELECT Name, Email FROM command WHERE IdColis = ?", idcolis)
+	if err != nil {
+		panic(err)
+	}
+	defer rows.Close()
+	var GetMail UsersPackage
+	for rows.Next() {
+		err := rows.Scan(&GetMail.Name, &GetMail.Email)
+		if err != nil {
+			panic(err)
+		}
+	}
+	println("Email : " + GetMail.Email)
+	println("Name : " + GetMail.Name)
+	return GetMail
+}
+
+func ExistAccount(Pseudo string) (bool, string, string) {
+	rows, _ := DB.Query("SELECT adminusr , adminpswd, uid FROM Users")
+	defer rows.Close()
+	for rows.Next() {
+		var each_pseudo string
+		var each_psswd string
+		var uid string
+		_ = rows.Scan(&each_pseudo, &each_psswd, &uid)
+		if each_pseudo == Pseudo {
+			return true, each_psswd, uid
+		}
+	}
+	return false, "", "oui"
 }

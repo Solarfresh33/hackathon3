@@ -13,8 +13,13 @@
         <div class="main_pages">
             <a href="/">Suivre mon colis</a>
             <a href="/FAQ">FAQ</a>
-            <a href="#Policies">Politique de litige</a>
+            <a href="/litige">Politique de litige</a>
             <a href="/contact">Nous contacter</a>
+            {{if .Connected}}
+            <a href="/admin">Espace admin</a>
+            <a href="/deco">Déconnexion</a>
+            {{else}}
+            {{end}}
         </div>
    </header>
    <div class="mainFollow">

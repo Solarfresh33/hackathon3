@@ -1,15 +1,23 @@
 package controllers
 
 import (
-	"crypto/md5"
-	"encoding/hex"
 	models "hackaton/model"
 	"html/template"
 	"net/http"
 )
 
 func GetIDStatusHandler(w http.ResponseWriter, r *http.Request) {
-	
+	var Connected PackageInfo
+	cookie, _ := r.Cookie("User")
+	if cookie == nil {
+		Connected.Connected = false
+		println("Connected = false")
+	} else {
+		Connected.Connected = true
+		println("Connected = true")
+
+	}
+
 	session, _ := r.Cookie("User")
 	if session == nil {
 		http.Redirect(w, r, "/", http.StatusSeeOther)
@@ -24,10 +32,6 @@ func GetIDStatusHandler(w http.ResponseWriter, r *http.Request) {
 	getid := r.FormValue("suivie")
 
 	if getid != "" {
-		h := md5.New()
-		idStr := getid
-		h.Write([]byte(idStr))
-		idStr = hex.EncodeToString(h.Sum(nil))
 		rows, err := models.DB.Query("SELECT idcolis FROM command")
 		if err != nil {
 			panic(err)
@@ -39,7 +43,7 @@ func GetIDStatusHandler(w http.ResponseWriter, r *http.Request) {
 			if err != nil {
 				panic(err)
 			}
-			if IdColis == idStr {
+			if IdColis == getid {
 				exist = true
 			}
 		}
@@ -48,8 +52,6 @@ func GetIDStatusHandler(w http.ResponseWriter, r *http.Request) {
 			http.Redirect(w, r, "/update/"+getid, http.StatusSeeOther)
 			return
 		}
-		http.Redirect(w, r, "/", http.StatusSeeOther)
-		return
 	}
 	tmpl, err := template.ParseFiles("./view/idupdate.html")
 	if err != nil {
@@ -57,7 +59,7 @@ func GetIDStatusHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	err = tmpl.Execute(w, nil)
+	err = tmpl.Execute(w, Connected)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return

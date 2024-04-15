@@ -1,8 +1,6 @@
 package controllers
 
 import (
-	"crypto/md5"
-	"encoding/hex"
 	models "hackaton/model"
 	"html/template"
 	"net/http"
@@ -20,21 +18,25 @@ type PackageInfo struct {
 	PointRelais  string
 	Probleme     string
 	Livre        string
+	Connected bool
 }
 
 func InfoPackageHandler(w http.ResponseWriter, r *http.Request) {
 	var packageInfo PackageInfo
+	cookie, _ := r.Cookie("User")
+	if cookie == nil {
+		packageInfo.Connected = false
+		println("Connected = false")
+	} else {
+		packageInfo.Connected = true
+		println("Connected = true")
+	
+	}
 	GetURLID := strings.Split(r.URL.Path, "/")[2]
 
 	packageInfo.Idcolis = GetURLID
-	h := md5.New()
-	idStr := GetURLID
-	h.Write([]byte(idStr))
-	idStr = hex.EncodeToString(h.Sum(nil))
-	println("l'url est : ", GetURLID)
-
 	if GetURLID != "" {
-		rows, err := models.DB.Query("SELECT codepostal, adresse, date, state, estimatetime, ville, pointrelais, probleme, livre FROM command where idcolis = ?", idStr)
+		rows, err := models.DB.Query("SELECT codepostal, adresse, date, state, estimatetime, ville, pointrelais, probleme, livre FROM command where idcolis = ?", GetURLID)
 		if err != nil {
 			panic(err)
 		}

@@ -7,16 +7,25 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
 </head>
 <body>
-   <header>
-        <a href="/">Suivre mon colis</a>
-        <a href="/FAQ">FAQ</a>
-        <a href="#Policies">Politique de litige</a>
-        <a href="/contact">Nous contacter</a>
+    <header>
+        <label for="toggle">☰</label>
+        <input type="checkbox" id="toggle">
+        <div class="main_pages">
+            <a href="/">Suivre mon colis</a>
+            <a href="/FAQ">FAQ</a>
+            <a href="/litige">Politique de litige</a>
+            <a href="/contact">Nous contacter</a>
+            {{if .Connected}}
+            <a href="/admin">Espace admin</a>
+            <a href="/deco">Déconnexion</a>
+            {{else}}
+            {{end}}
+        </div>
    </header>
    <div class="mainFP">
-        <h1>Suivre mon colis 📦</h1>
+        <h1>Mettre à jour le suivi de colis 📦</h1>
         <form class="containerFP" method="POST">
-            <p>Update colis</p>
+            <p>Renseignez le numéro du colis</p>
             <div class="idInput">
                 <input class="inputNum" type="text" name="suivie" id="suivie" placeholder="Ex: Q6HIfOcwmo2lBPxC">
                 <button class="submit" type="submit"><span class="material-symbols-outlined">search</span></button>

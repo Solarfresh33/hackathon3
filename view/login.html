@@ -3,13 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">    
+    <link rel="stylesheet" href="../assets/style.css"> 
 </head>
 
 <body>
-    <form action="/login" method="POST">
-        <input type="text" name="pseudo">
-        <input type="password" name="password">
-        <input type="submit" value="Submit">
-    </form>
+    <header>
+        <label for="toggle">☰</label>
+        <input type="checkbox" id="toggle">
+        <div class="main_pages">
+            <a href="/">Suivre mon colis</a>
+            <a href="/FAQ">FAQ</a>
+            <a href="/litige">Politique de litige</a>
+            <a href="/contact">Nous contacter</a>
+            {{if .Connected}}
+            <a href="/admin">Espace admin</a>
+            <a href="/deco">Déconnexion</a>
+            {{else}}
+            {{end}}
+        </div>
+   </header>
+   <div class="mainlogin">
+        <form class="containerlogin" action="/login" method="POST">
+            <div class="boxlogin">
+                <h1>Login</h1>
+            </div>
+            <input class="loginInput" type="text" name="pseudo" placeholder="Nom">
+            <input class="loginInput" type="password" name="password" placeholder="Mot de passe">
+            <input class="loginSubmit" type="submit" value="Se connecter">
+        </form>
+    </div>
 </body>
 </html>

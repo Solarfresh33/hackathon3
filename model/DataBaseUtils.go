@@ -17,7 +17,7 @@ func CreateDBUsers() {
 	_, err := DB.Exec(`CREATE TABLE IF NOT EXISTS Users (
 		id INTEGER PRIMARY KEY AUTOINCREMENT,
 		uid TEXT NOT NULL UNIQUE,
-		adminusr TEXT NOT NULL UNIQUE,
+		adminusr TEXT NOT NULL,
 		adminpswd TEXT NOT NULL,
 		Admin INTEGER
 	)`)
@@ -32,6 +32,8 @@ func CreateDBCommand() {
 		Id INTEGER PRIMARY KEY AUTOINCREMENT,
 		IdColis TEXT,
 		CodePostal INTEGER,
+		Email TEXT,
+		Name TEXT,
 		Adresse VARCHAR(100),
 		State TEXT,
 		Date TEXT,

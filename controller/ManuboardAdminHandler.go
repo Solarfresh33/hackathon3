@@ -6,7 +6,7 @@ import (
 	"net/http"
 )
 
-func FAQHandler(w http.ResponseWriter, r *http.Request) {
+func MenuboardAdminHandler(w http.ResponseWriter, r *http.Request) {
 	var Connected PackageInfo
 	cookie, _ := r.Cookie("User")
 	if cookie == nil {
@@ -17,13 +17,18 @@ func FAQHandler(w http.ResponseWriter, r *http.Request) {
 		println("Connected = true")
 	
 	}
+	session, _ := r.Cookie("User")
+	if session == nil {
+		http.Redirect(w, r, "/", http.StatusSeeOther)
+		return
+	}
 
-	if r.URL.Path != "/FAQ" {
+	if r.URL.Path != "/admin" {
 		models.NotFound(w, r)
 		return
 	}
 
-	tmpl, err := template.ParseFiles("./view/FAQ.html")
+	tmpl, err := template.ParseFiles("./view/menuboardAdmin.html")
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
