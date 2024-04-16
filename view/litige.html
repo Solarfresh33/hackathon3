@@ -15,6 +15,11 @@
             <a href="/FAQ">FAQ</a>
             <a href="/litige">Politique de litige</a>
             <a href="/contact">Nous contacter</a>
+            {{if .Connected}}
+            <a href="/admin">Espace admin</a>
+            <a href="/deco">Déconnexion</a>
+            {{else}}
+            {{end}}
         </div>
    </header>
 
@@ -30,5 +35,6 @@
             </div>
         </div>
     </div>
+    <script async data-id="7645733362" id="chatling-embed-script" type="text/javascript" src="https://chatling.ai/js/embed.js"></script>
 </body>
 </html>

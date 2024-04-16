@@ -42,8 +42,8 @@ func SendMailReel() {
 	userPackage := GetEmailandNAme(idcolis)
 
 	to := []string{userPackage.Email}
-	subject := "Sujet du mail"
-	body := idcolis + " a été créé"
+	subject := "Votre colis Tracky !"
+	body := "Votre colis a été mis à jour.\n Veuillez le consultez avec le lien ci-contre  : https://groupe5.etudiants.ynov-bordeaux.com/id/" + idcolis  
 	err = sendMail(to, subject, body)
 	if err != nil {
 		panic(err)

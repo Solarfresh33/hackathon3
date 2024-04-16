@@ -47,6 +47,7 @@ func InfoPackageHandler(w http.ResponseWriter, r *http.Request) {
 				panic(err)
 			}
 		}
+		println(packageInfo.Ville)
 	}
 	tmpl, err := template.ParseFiles("./view/followPackage.html")
 	if err != nil {

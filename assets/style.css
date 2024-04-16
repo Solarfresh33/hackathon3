@@ -369,6 +369,11 @@ label, #toggle
 
 .infoFP {
     display: flex;
+
+}
+
+.infoFP a {
+    border-bottom: none !important;
 }
 
 .textInfo {

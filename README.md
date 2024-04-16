@@ -40,7 +40,11 @@ Vous pourrez accéder a la page administrateur à cette adresse : https://groupe
 La page scan permet de scanner un QR Code afin de modifier l'avancement du colis, la page créer permet de créer un colis lorsqu'une commande à été effectuée, la page utilisateur permet d'ajouter un administrateur au site, la page livraison permet de voir tous les colis qui ont été commandé, la page update permet de mettre à jour l'état d'avancement du colis grâce à son numéro de colis, et enfin, la page application permet de télécharger notre application.
 
 ## V. Les fonctionnalitées de Tracky
+<<<<<<< HEAD
 Tracky a mit en place un bot qui peut vous guidez sur le site. Il est également possible pour les administrateurs de pouvoir scanner un QR Code pour pouvoir modifier l'avancement du colis avec leur téléphone par exemple. Et enfin, il est possible de devenir affilié chez Tracky afin de se faire livrer un colis **(Julien add une explication de ta feature pour devenir livreur et tout, j'sais pas comment l'expliquer mdr)** . 
+=======
+Tracky a mit en place un bot qui peut vous guidez sur le site. Il est également possible pour les administrateurs de pouvoir scanner un QR Code pour pouvoir modifier l'avancement du colis avec leur téléphone par exemple. Et enfin, il y a un système de livraison premium qui se réfère a des chauffeurs indépendants a la manière de Uber. 
+>>>>>>> 68824f80be145e45089d5e51c094387f0b26885d
 
 ## VI. Si Tracky ne fonctionne pas
 
